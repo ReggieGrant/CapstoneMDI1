@@ -24,9 +24,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		143D6E85302408590032BCB9 /* Capstone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Capstone.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		143D6E923024085B0032BCB9 /* CapstoneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CapstoneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		143D6E9C3024085B0032BCB9 /* CapstoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CapstoneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		143D6E85302408590032BCB9 /* CapstoneMDI1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CapstoneMDI1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		143D6E923024085B0032BCB9 /* CapstoneMDI1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CapstoneMDI1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		143D6E9C3024085B0032BCB9 /* CapstoneMDI1UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CapstoneMDI1UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -85,9 +85,9 @@
 		143D6E86302408590032BCB9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				143D6E85302408590032BCB9 /* Capstone.app */,
-				143D6E923024085B0032BCB9 /* CapstoneTests.xctest */,
-				143D6E9C3024085B0032BCB9 /* CapstoneUITests.xctest */,
+				143D6E85302408590032BCB9 /* CapstoneMDI1.app */,
+				143D6E923024085B0032BCB9 /* CapstoneMDI1Tests.xctest */,
+				143D6E9C3024085B0032BCB9 /* CapstoneMDI1UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,9 +95,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		143D6E84302408590032BCB9 /* Capstone */ = {
+		143D6E84302408590032BCB9 /* CapstoneMDI1 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 143D6EA63024085B0032BCB9 /* Build configuration list for PBXNativeTarget "Capstone" */;
+			buildConfigurationList = 143D6EA63024085B0032BCB9 /* Build configuration list for PBXNativeTarget "CapstoneMDI1" */;
 			buildPhases = (
 				143D6E81302408590032BCB9 /* Sources */,
 				143D6E82302408590032BCB9 /* Frameworks */,
@@ -110,16 +110,16 @@
 			fileSystemSynchronizedGroups = (
 				143D6E87302408590032BCB9 /* Capstone */,
 			);
-			name = Capstone;
+			name = CapstoneMDI1;
 			packageProductDependencies = (
 			);
 			productName = Capstone;
-			productReference = 143D6E85302408590032BCB9 /* Capstone.app */;
+			productReference = 143D6E85302408590032BCB9 /* CapstoneMDI1.app */;
 			productType = "com.apple.product-type.application";
 		};
-		143D6E913024085B0032BCB9 /* CapstoneTests */ = {
+		143D6E913024085B0032BCB9 /* CapstoneMDI1Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 143D6EA93024085B0032BCB9 /* Build configuration list for PBXNativeTarget "CapstoneTests" */;
+			buildConfigurationList = 143D6EA93024085B0032BCB9 /* Build configuration list for PBXNativeTarget "CapstoneMDI1Tests" */;
 			buildPhases = (
 				143D6E8E3024085B0032BCB9 /* Sources */,
 				143D6E8F3024085B0032BCB9 /* Frameworks */,
@@ -133,16 +133,16 @@
 			fileSystemSynchronizedGroups = (
 				143D6E953024085B0032BCB9 /* CapstoneTests */,
 			);
-			name = CapstoneTests;
+			name = CapstoneMDI1Tests;
 			packageProductDependencies = (
 			);
 			productName = CapstoneTests;
-			productReference = 143D6E923024085B0032BCB9 /* CapstoneTests.xctest */;
+			productReference = 143D6E923024085B0032BCB9 /* CapstoneMDI1Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		143D6E9B3024085B0032BCB9 /* CapstoneUITests */ = {
+		143D6E9B3024085B0032BCB9 /* CapstoneMDI1UITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 143D6EAC3024085B0032BCB9 /* Build configuration list for PBXNativeTarget "CapstoneUITests" */;
+			buildConfigurationList = 143D6EAC3024085B0032BCB9 /* Build configuration list for PBXNativeTarget "CapstoneMDI1UITests" */;
 			buildPhases = (
 				143D6E983024085B0032BCB9 /* Sources */,
 				143D6E993024085B0032BCB9 /* Frameworks */,
@@ -156,11 +156,11 @@
 			fileSystemSynchronizedGroups = (
 				143D6E9F3024085B0032BCB9 /* CapstoneUITests */,
 			);
-			name = CapstoneUITests;
+			name = CapstoneMDI1UITests;
 			packageProductDependencies = (
 			);
 			productName = CapstoneUITests;
-			productReference = 143D6E9C3024085B0032BCB9 /* CapstoneUITests.xctest */;
+			productReference = 143D6E9C3024085B0032BCB9 /* CapstoneMDI1UITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -186,7 +186,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 143D6E80302408590032BCB9 /* Build configuration list for PBXProject "Capstone" */;
+			buildConfigurationList = 143D6E80302408590032BCB9 /* Build configuration list for PBXProject "CapstoneMDI1" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -200,9 +200,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				143D6E84302408590032BCB9 /* Capstone */,
-				143D6E913024085B0032BCB9 /* CapstoneTests */,
-				143D6E9B3024085B0032BCB9 /* CapstoneUITests */,
+				143D6E84302408590032BCB9 /* CapstoneMDI1 */,
+				143D6E913024085B0032BCB9 /* CapstoneMDI1Tests */,
+				143D6E9B3024085B0032BCB9 /* CapstoneMDI1UITests */,
 			);
 		};
 /* End PBXProject section */
@@ -258,12 +258,12 @@
 /* Begin PBXTargetDependency section */
 		143D6E943024085B0032BCB9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 143D6E84302408590032BCB9 /* Capstone */;
+			target = 143D6E84302408590032BCB9 /* CapstoneMDI1 */;
 			targetProxy = 143D6E933024085B0032BCB9 /* PBXContainerItemProxy */;
 		};
 		143D6E9E3024085B0032BCB9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 143D6E84302408590032BCB9 /* Capstone */;
+			target = 143D6E84302408590032BCB9 /* CapstoneMDI1 */;
 			targetProxy = 143D6E9D3024085B0032BCB9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -467,7 +467,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Capstone.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Capstone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CapstoneMDI1.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CapstoneMDI1";
 			};
 			name = Debug;
 		};
@@ -488,7 +488,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Capstone.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Capstone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CapstoneMDI1.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CapstoneMDI1";
 			};
 			name = Release;
 		};
@@ -533,7 +533,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		143D6E80302408590032BCB9 /* Build configuration list for PBXProject "Capstone" */ = {
+		143D6E80302408590032BCB9 /* Build configuration list for PBXProject "CapstoneMDI1" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				143D6EA43024085B0032BCB9 /* Debug */,
@@ -542,7 +542,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		143D6EA63024085B0032BCB9 /* Build configuration list for PBXNativeTarget "Capstone" */ = {
+		143D6EA63024085B0032BCB9 /* Build configuration list for PBXNativeTarget "CapstoneMDI1" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				143D6EA73024085B0032BCB9 /* Debug */,
@@ -551,7 +551,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		143D6EA93024085B0032BCB9 /* Build configuration list for PBXNativeTarget "CapstoneTests" */ = {
+		143D6EA93024085B0032BCB9 /* Build configuration list for PBXNativeTarget "CapstoneMDI1Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				143D6EAA3024085B0032BCB9 /* Debug */,
@@ -560,7 +560,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		143D6EAC3024085B0032BCB9 /* Build configuration list for PBXNativeTarget "CapstoneUITests" */ = {
+		143D6EAC3024085B0032BCB9 /* Build configuration list for PBXNativeTarget "CapstoneMDI1UITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				143D6EAD3024085B0032BCB9 /* Debug */,
