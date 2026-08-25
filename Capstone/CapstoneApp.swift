@@ -6,12 +6,18 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct CapstoneApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                LoginView()
+            }
         }
+        // Registers all three @Model types so SwiftData knows
+        // what tables to create in its local SQLite store
+        .modelContainer(for: [UserAccount.self, SavedLocationRecord.self, MomentRecord.self])
     }
 }

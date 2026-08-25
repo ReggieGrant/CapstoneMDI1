@@ -8,11 +8,12 @@
 import Foundation
 
 // MARK: - Error Types
-// Equivalent to your Python except blocks:
-// requests.exceptions.RequestException / KeyError / generic Exception
+
 enum NetworkError: LocalizedError {
     case invalidURL
     case noConnection
+    case cancelled
+    case timedOut
     case badStatus(code: Int)
     case decodingFailed(Error)
     case unknown(Error)
@@ -23,6 +24,10 @@ enum NetworkError: LocalizedError {
             return "The request URL was invalid."
         case .noConnection:
             return "Unable to fetch weather data. Please check your internet connection."
+        case .cancelled:                                             
+            return "The request was interrupted. Please try again."
+        case .timedOut:
+            return "The request took too long. Please try again."
         case .badStatus(let code):
             return "Server returned an error (status \(code))."
         case .decodingFailed:
@@ -49,15 +54,11 @@ final class NetworkManager {
     
     private init() {
         let config = URLSessionConfiguration.default
-        config.timeoutIntervalForRequest = 5 // same as your Python `timeout=5`
+        config.timeoutIntervalForRequest = 15
         self.session = URLSession(configuration: config)
     }
     
-    /// Generic fetch-and-decode function.
-    /// Equivalent to your Python pattern:
-    ///     response = requests.get(url, params=params, timeout=5)
-    ///     response.raise_for_status()
-    ///     data = response.json()
+    
     func fetch<T: Decodable>(
         _ type: T.Type,
         from urlString: String,
@@ -113,9 +114,7 @@ final class NetworkManager {
         }
     }
     
-    /// Raw data fetch, for endpoints you'll parse manually
-    /// (useful for the OpenWeatherMap responses with nested JSON,
-    /// like your WeatherModel's custom decoder)
+    
     func fetchRawData(
         from urlString: String,
         queryItems: [URLQueryItem] = []

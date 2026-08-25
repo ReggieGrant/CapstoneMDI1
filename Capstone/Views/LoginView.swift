@@ -6,72 +6,117 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct LoginView: View {
-    @State private var email = ""
-    @State private var password = ""
-    @State private var showingMissingCredentials = false
-
-    private var canSignIn: Bool {
-        !email.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && !password.isEmpty
-    }
-
+    @StateObject private var viewModel = AuthViewModel()
+    @Environment(\.modelContext) private var modelContext
+    @State private var showSignUp = false
+    @State private var isPasswordVisible = false
+    
     var body: some View {
-        ZStack {
-            Backgrounds.gradient1
-                .ignoresSafeArea()
-
+        ScrollView {
             VStack(spacing: 28) {
-                VStack(spacing: 8) {
-                    Text("Login")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundStyle(.white)
-
-                    Text("Please enter your credentials to continue.")
-                        .font(.body)
-                        .multilineTextAlignment(.center)
-                        .foregroundStyle(.white.opacity(0.85))
-                }
-
-                VStack(spacing: 16) {
-                    TextField("Email", text: $email)
-                        .textInputAutocapitalization(.never)
-                        .keyboardType(.emailAddress)
-                        .autocorrectionDisabled()
-                        .textContentType(.username)
-                        .padding()
-                        .background(.white.opacity(0.92), in: RoundedRectangle(cornerRadius: 8))
-                        .foregroundStyle(Color.formText)
-
-                    SecureField("Password", text: $password)
-                        .textContentType(.password)
-                        .padding()
-                        .background(.white.opacity(0.92), in: RoundedRectangle(cornerRadius: 8))
-                        .foregroundStyle(Color.formText)
-
-                    Button {
-                        showingMissingCredentials = !canSignIn
-                    } label: {
-                        Text("Sign In")
-                            .font(.headline)
-                            .frame(maxWidth: .infinity)
-                            .padding()
+                
+                VStack(spacing: 12) {
+                    ZStack {
+                        Circle()
+                            .fill(
+                                LinearGradient(colors: [Color(hex: "667eea"), Color(hex: "764ba2")],
+                                               startPoint: .topLeading, endPoint: .bottomTrailing)
+                            )
+                            .frame(width: 90, height: 90)
+                        Image(systemName: "cloud.sun.fill")
+                            .font(.system(size: 40))
+                            .foregroundColor(.white)
                     }
-                    .buttonStyle(.borderedProminent)
-                    .tint(.white)
-                    .foregroundStyle(Color.formText)
-                    .disabled(!canSignIn)
-                    .opacity(canSignIn ? 1 : 0.65)
+                    Text("Clearview")
+                        .font(.system(size: 30, weight: .bold))
+                        .foregroundColor(Color(hex: "2c3e50"))
+                    Text("Weather through the eyes of the world")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
                 }
-                .frame(maxWidth: 360)
+                .padding(.top, 40)
+                
+                if let error = viewModel.errorMessage {
+                    HStack(spacing: 8) {
+                        Image(systemName: "exclamationmark.triangle.fill")
+                        Text(error)
+                    }
+                    .font(.subheadline)
+                    .foregroundColor(.red)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.red.opacity(0.1))
+                    .cornerRadius(12)
+                    .padding(.horizontal)
+                }
+                
+                VStack(spacing: 16) {
+                    AuthTextField(icon: "envelope", placeholder: "Email address",
+                                  text: $viewModel.email, keyboardType: .emailAddress)
+                    AuthSecureField(placeholder: "Password", text: $viewModel.password,
+                                     isVisible: $isPasswordVisible)
+                    HStack {
+                        Spacer()
+                        Button("Forgot Password?") {}
+                            .font(.footnote.bold())
+                            .foregroundColor(Color(hex: "667eea"))
+                    }
+                }
+                .padding(.horizontal)
+                
+                Button {
+                    viewModel.login(context: modelContext)
+                } label: {
+                    Group {
+                        if viewModel.isLoading {
+                            ProgressView().tint(.white)
+                        } else {
+                            Text("Log In").font(.headline)
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(
+                        LinearGradient(colors: [Color(hex: "667eea"), Color(hex: "764ba2")],
+                                       startPoint: .leading, endPoint: .trailing)
+                    )
+                    .foregroundColor(.white)
+                    .clipShape(Capsule())
+                    .shadow(color: Color(hex: "667eea").opacity(0.3), radius: 15, y: 8)
+                }
+                .disabled(viewModel.isLoading)
+                .padding(.horizontal)
+                
+                HStack {
+                    Rectangle().frame(height: 1).foregroundColor(Color(.systemGray4))
+                    Text("or").font(.footnote).foregroundColor(.secondary)
+                    Rectangle().frame(height: 1).foregroundColor(Color(.systemGray4))
+                }
+                .padding(.horizontal)
+                
+                HStack(spacing: 4) {
+                    Text("Don't have an account?").foregroundColor(.secondary)
+                    Button("Sign Up") { showSignUp = true }
+                        .fontWeight(.bold)
+                        .foregroundColor(Color(hex: "667eea"))
+                }
+                .font(.subheadline)
+                .padding(.bottom, 30)
             }
-            .padding(24)
         }
-        .alert("Missing Credentials", isPresented: $showingMissingCredentials) {
-            Button("OK", role: .cancel) { }
-        } message: {
-            Text("Enter your email and password to sign in.")
+        .background(Color(hex: "f8f9fa"))
+        .navigationDestination(isPresented: $showSignUp) {
+            SignUpView()
+        }
+        .navigationDestination(isPresented: $viewModel.isAuthenticated) {
+            // CHANGED: passes the logged-in user through instead of
+            // ContentView() creating its own disconnected instance
+            if let user = viewModel.currentUser {
+                ContentView(loggedInUser: user)
+            }
         }
     }
 }

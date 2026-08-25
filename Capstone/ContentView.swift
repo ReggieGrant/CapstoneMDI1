@@ -8,68 +8,66 @@
 import SwiftUI
 
 struct ContentView: View {
-    // Tracks which tab is active, like tracking which URL path
-    
+    let loggedInUser: UserAccount
+    @StateObject private var authViewModel: AuthViewModel
     @State private var selectedTab: Tab = .home
     
     enum Tab {
-        case home, explore, locations, community, upload
+        case home, explore, locations, community, profile
+    }
+    
+    init(loggedInUser: UserAccount) {
+        self.loggedInUser = loggedInUser
+        let vm = AuthViewModel()
+        vm.currentUser = loggedInUser
+        vm.isAuthenticated = true
+        _authViewModel = StateObject(wrappedValue: vm)
     }
     
     var body: some View {
         TabView(selection: $selectedTab) {
             
-            // Each tab wraps its root view in a NavigationStack so
-            // pushing detail screens (like a post detail) works
-            // independently per tab — same idea as each Django app
-            // (pages, notes) having its own urls.py
-            
             NavigationStack {
                 HomeView()
             }
-            .tabItem {
-                Label("Home", systemImage: "house.fill")
-            }
+            .tabItem { Label("Home", systemImage: "house.fill") }
             .tag(Tab.home)
             
             NavigationStack {
                 ExploreView()
             }
-            .tabItem {
-                Label("Explore", systemImage: "safari.fill")
-            }
+            .tabItem { Label("Explore", systemImage: "safari.fill") }
             .tag(Tab.explore)
             
             NavigationStack {
                 LocationsView()
             }
-            .tabItem {
-                Label("Locations", systemImage: "mappin.and.ellipse")
-            }
+            .tabItem { Label("Locations", systemImage: "mappin.and.ellipse") }
             .tag(Tab.locations)
             
             NavigationStack {
                 CommunityView()
             }
-            .tabItem {
-                Label("Community", systemImage: "person.2.fill")
-            }
+            .tabItem { Label("Community", systemImage: "person.2.fill") }
             .tag(Tab.community)
             
             NavigationStack {
-                UploadView()
+                ProfileView()
             }
-            .tabItem {
-                Label("Share", systemImage: "plus.circle.fill")
-            }
-            .tag(Tab.upload)
+            .tabItem { Label("Profile", systemImage: "person.crop.circle.fill") }
+            .tag(Tab.profile)
         }
-        // Matches your navbar's brand gradient accent color
         .tint(Color(hex: "667eea"))
+        .environmentObject(authViewModel)
     }
 }
 
-
 #Preview {
-    ContentView()
+    ContentView(
+        loggedInUser: UserAccount(
+            username: "preview_user",
+            email: "preview@example.com",
+            passwordHash: "preview_hash"
+        )
+    )
 }
